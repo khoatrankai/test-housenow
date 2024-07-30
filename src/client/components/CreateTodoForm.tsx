@@ -67,7 +67,7 @@ export const CreateTodoForm = () => {
 
       <button
         type="button"
-        className="flex h-9 w-[67px] items-center justify-center rounded-full bg-[#334155] text-white"
+        className="flex h-9 w-[67px] items-center justify-center rounded-full bg-gray-700 text-white"
         disabled={isCreatingTodo}
         onClick={() => {
           handleCreate()

@@ -1,9 +1,10 @@
+import * as Tabs from '@radix-ui/react-tabs'
+import { useState } from 'react'
+
 import { CreateTodoForm } from '@/client/components/CreateTodoForm'
 import { TodoList } from '@/client/components/TodoList'
 import { TodoListCompleted } from '@/client/components/TodoListCompleted'
 import { TodoListPending } from '@/client/components/TodoListPending'
-import * as Tabs from '@radix-ui/react-tabs'
-import { useState } from 'react'
 /**
  * QUESTION 6:
  * -----------
@@ -36,8 +37,8 @@ const Index = () => {
               }}
               className={`rounded-full border-[1px] px-6 py-3 text-sm font-bold transition-all duration-500 ${
                 checkActive === 1
-                  ? 'border-[#334155] bg-[#334155] text-white'
-                  : ' border-[#E2E8F0] text-[#334155]'
+                  ? 'border-gray-700 bg-gray-700 text-white'
+                  : ' border-gray-200 text-gray-700'
               }`}
               value="tab1"
             >
@@ -49,8 +50,8 @@ const Index = () => {
               }}
               className={`rounded-full border-[1px] px-6 py-3 text-sm font-bold transition-all duration-500 ${
                 checkActive === 2
-                  ? 'border-[#334155] bg-[#334155] text-white'
-                  : ' border-[#E2E8F0] text-[#334155]'
+                  ? 'border-gray-700 bg-gray-700 text-white'
+                  : ' border-gray-200 text-gray-700'
               }`}
               value="tab2"
             >
@@ -62,8 +63,8 @@ const Index = () => {
               }}
               className={`rounded-full border-[1px] px-6 py-3 text-sm font-bold  transition-all duration-500 ${
                 checkActive === 3
-                  ? 'border-[#334155] bg-[#334155] text-white'
-                  : ' border-[#E2E8F0] text-[#334155]'
+                  ? 'border-gray-700 bg-gray-700 text-white'
+                  : ' border-gray-200 text-gray-700'
               }`}
               value="tab3"
             >

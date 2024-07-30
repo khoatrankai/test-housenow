@@ -121,7 +121,7 @@ export const TodoList = () => {
         <li key={todo.id}>
           <div
             className={`flex items-center justify-between rounded-12 border border-gray-200 px-4 py-3 shadow-sm ${
-              todo.status === 'completed' && 'bg-[#F8FAFC]'
+              todo.status === 'completed' && 'bg-gray-50'
             }`}
           >
             <div className="flex items-center ">
@@ -140,7 +140,7 @@ export const TodoList = () => {
 
               <label
                 className={`block pl-3 font-medium ${
-                  todo.status === 'completed' && 'text-[#64748B] line-through'
+                  todo.status === 'completed' && 'text-gray-500 line-through'
                 }`}
                 htmlFor={String(todo.id)}
               >

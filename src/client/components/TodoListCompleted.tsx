@@ -39,7 +39,7 @@ export const TodoListCompleted = () => {
       {dataCheck.map((todo: any) => (
         <li key={todo.id}>
           <div
-            className={`flex items-center justify-between rounded-12 border border-gray-200 bg-[#F8FAFC] px-4 py-3 shadow-sm`}
+            className={`flex items-center justify-between rounded-12 border border-gray-200 bg-gray-50 px-4 py-3 shadow-sm`}
           >
             <div className="flex items-center ">
               <Checkbox.Root
@@ -56,7 +56,7 @@ export const TodoListCompleted = () => {
               </Checkbox.Root>
 
               <label
-                className={`block pl-3 font-medium text-[#64748B] line-through`}
+                className={`block pl-3 font-medium text-gray-500 line-through`}
                 htmlFor={String(todo.id)}
               >
                 {todo.body}

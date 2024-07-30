@@ -39,7 +39,7 @@ export const CreateTodoForm = () => {
     })
     setTodoBody('')
   }
-  const handleEnter = (e) => {
+  const handleEnter = (e: any) => {
     if (e.key === 'Enter') {
       e.preventDefault()
       handleCreate()

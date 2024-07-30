@@ -1,11 +1,11 @@
 import { useEffect, useState, type SVGProps } from 'react'
-
 import * as Checkbox from '@radix-ui/react-checkbox'
-import { api } from '@/utils/client/api'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
+import { api } from '@/utils/client/api'
+
 export const TodoListCompleted = () => {
-  const { data: todos = [] } = api.todo.getAll.useQuery({
+  const { data: todos = [] }: any = api.todo.getAll.useQuery({
     statuses: ['completed', 'pending'],
   })
   const [animationParent] = useAutoAnimate()
@@ -25,18 +25,18 @@ export const TodoListCompleted = () => {
     })
   useEffect(() => {
     setDataCheck(
-      todos.filter((dt) => {
+      todos.filter((dt: any) => {
         return dt.status !== 'pending'
       })
     )
   }, [todos])
-  const handleUpdate = (id, statuss) => {
+  const handleUpdate = (id: number, statuss: string) => {
     updateTodo({ status: 'pending', todoId: id })
   }
 
   return (
     <ul className="grid grid-cols-1 gap-y-3" ref={animationParent}>
-      {dataCheck.map((todo) => (
+      {dataCheck.map((todo: any) => (
         <li key={todo.id}>
           <div
             className={`flex items-center justify-between rounded-12 border border-gray-200 bg-[#F8FAFC] px-4 py-3 shadow-sm`}

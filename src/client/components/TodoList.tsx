@@ -1,8 +1,8 @@
 import { useEffect, useState, type SVGProps } from 'react'
-
 import * as Checkbox from '@radix-ui/react-checkbox'
-import { api } from '@/utils/client/api'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+
+import { api } from '@/utils/client/api'
 
 /**
  * QUESTION 3:
@@ -68,15 +68,15 @@ export const TodoList = () => {
     statuses: ['completed', 'pending'],
   })
   const [animationParent] = useAutoAnimate()
-  const [dataCheck, setDataCheck] = useState([])
-  const [dataId, setDataId] = useState()
+  const [dataCheck, setDataCheck] = useState<any>([])
+  const [dataId, setDataId] = useState<any>()
   const apiContext = api.useContext()
   const { mutate: updateTodo, isLoading: isCreatingTodoUpdate } =
     api.todoStatus.update.useMutation({
       onSuccess: () => {
         // apiContext.todo.getAll.refetch()
         setDataCheck(
-          dataCheck.map((dt) => {
+          dataCheck.map((dt: any) => {
             if (dt.id === dataId) {
               if (dt.status === 'completed') {
                 return { ...dt, status: 'pending' }
@@ -95,7 +95,7 @@ export const TodoList = () => {
       onSuccess: () => {
         // apiContext.todo.getAll.refetch()
         setDataCheck(
-          dataCheck.filter((dt) => {
+          dataCheck.filter((dt: any) => {
             return dt.id !== dataId
           })
         )
@@ -105,7 +105,7 @@ export const TodoList = () => {
   useEffect(() => {
     setDataCheck(todos)
   }, [todos])
-  const handleUpdate = (id, statuss) => {
+  const handleUpdate = (id: number, statuss: string) => {
     if (statuss === 'completed') {
       setDataId(id)
       updateTodo({ status: 'pending', todoId: id })
@@ -117,7 +117,7 @@ export const TodoList = () => {
 
   return (
     <ul className="grid grid-cols-1 gap-y-3" ref={animationParent}>
-      {dataCheck.map((todo) => (
+      {dataCheck.map((todo: any) => (
         <li key={todo.id}>
           <div
             className={`flex items-center justify-between rounded-12 border border-gray-200 px-4 py-3 shadow-sm ${

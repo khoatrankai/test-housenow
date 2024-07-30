@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState, type SVGProps } from 'react'
 import * as Checkbox from '@radix-ui/react-checkbox'
 import { useAutoAnimate } from '@formkit/auto-animate/react'

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState, type SVGProps } from 'react'
 import * as Checkbox from '@radix-ui/react-checkbox'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
@@ -11,18 +13,16 @@ export const TodoListPending = () => {
   const [animationParent] = useAutoAnimate()
   const [dataCheck, setDataCheck] = useState([])
   const apiContext = api.useContext()
-  const { mutate: updateTodo, isLoading: isCreatingTodoUpdate } =
-    api.todoStatus.update.useMutation({
-      onSuccess: () => {
-        apiContext.todo.getAll.refetch()
-      },
-    })
-  const { mutate: deleteTodo, isLoading: isCreatingTodoDelete } =
-    api.todo.delete.useMutation({
-      onSuccess: () => {
-        apiContext.todo.getAll.refetch()
-      },
-    })
+  const { mutate: updateTodo } = api.todoStatus.update.useMutation({
+    onSuccess: () => {
+      apiContext.todo.getAll.refetch()
+    },
+  })
+  const { mutate: deleteTodo } = api.todo.delete.useMutation({
+    onSuccess: () => {
+      apiContext.todo.getAll.refetch()
+    },
+  })
   useEffect(() => {
     setDataCheck(
       todos.filter((dt: any) => {

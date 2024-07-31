@@ -3,8 +3,6 @@ import { useState } from 'react'
 
 import { CreateTodoForm } from '@/client/components/CreateTodoForm'
 import { TodoList } from '@/client/components/TodoList'
-import { TodoListCompleted } from '@/client/components/TodoListCompleted'
-import { TodoListPending } from '@/client/components/TodoListPending'
 /**
  * QUESTION 6:
  * -----------
@@ -72,19 +70,15 @@ const Index = () => {
             </Tabs.Trigger>
           </Tabs.TabsList>
           <Tabs.Content value="tab1">
-            <TodoList />
+            <TodoList typeTodo={'all'} />
           </Tabs.Content>
           <Tabs.Content value="tab2">
-            <TodoListPending />
+            <TodoList typeTodo={'pending'} />
           </Tabs.Content>
           <Tabs.Content value="tab3">
-            <TodoListCompleted />
+            <TodoList typeTodo={'completed'} />
           </Tabs.Content>
         </Tabs.Root>
-        {/* <div className="pt-10">
-          <TodoList />
-        </div> */}
-
         <div className=" w-full">
           <CreateTodoForm />
         </div>

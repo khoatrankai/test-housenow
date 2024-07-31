@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState, type SVGProps } from 'react'
 import * as Checkbox from '@radix-ui/react-checkbox'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
@@ -7,11 +6,10 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { api } from '@/utils/client/api'
 
 export const TodoListCompleted = () => {
-  const { data: todos = [] }: any = api.todo.getAll.useQuery({
-    statuses: ['completed', 'pending'],
+  const { data: todos = [] } = api.todo.getAll.useQuery({
+    statuses: ['completed'],
   })
   const [animationParent] = useAutoAnimate()
-  const [dataCheck, setDataCheck] = useState([])
   const apiContext = api.useContext()
   const { mutate: updateTodo, isLoading: isCreatingTodoUpdate } =
     api.todoStatus.update.useMutation({
@@ -25,20 +23,13 @@ export const TodoListCompleted = () => {
         apiContext.todo.getAll.refetch()
       },
     })
-  useEffect(() => {
-    setDataCheck(
-      todos.filter((dt: any) => {
-        return dt.status !== 'pending'
-      })
-    )
-  }, [todos])
   const handleUpdate = (id: number, statuss: string) => {
     updateTodo({ status: 'pending', todoId: id })
   }
 
   return (
     <ul className="grid grid-cols-1 gap-y-3" ref={animationParent}>
-      {dataCheck.map((todo: any) => (
+      {todos.map((todo) => (
         <li key={todo.id}>
           <div
             className={`flex items-center justify-between rounded-12 border border-gray-200 bg-gray-50 px-4 py-3 shadow-sm`}

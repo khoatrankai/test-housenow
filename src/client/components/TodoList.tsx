@@ -70,56 +70,27 @@ export const TodoList = () => {
     statuses: ['completed', 'pending'],
   })
   const [animationParent] = useAutoAnimate()
-  const [dataCheck, setDataCheck] = useState<any>([])
-  const [dataId, setDataId] = useState<any>()
   const apiContext = api.useContext()
   const { mutate: updateTodo, isLoading: isCreatingTodoUpdate } =
     api.todoStatus.update.useMutation({
       onSuccess: () => {
-        // apiContext.todo.getAll.refetch()
-        setDataCheck(
-          dataCheck.map((dt: any) => {
-            if (dt.id === dataId) {
-              if (dt.status === 'completed') {
-                return { ...dt, status: 'pending' }
-              } else {
-                return { ...dt, status: 'completed' }
-              }
-            }
-            return dt
-          })
-        )
-        setDataId('')
+        apiContext.todo.getAll.refetch()
       },
     })
   const { mutate: deleteTodo, isLoading: isCreatingTodoDelete } =
     api.todo.delete.useMutation({
       onSuccess: () => {
-        // apiContext.todo.getAll.refetch()
-        setDataCheck(
-          dataCheck.filter((dt: any) => {
-            return dt.id !== dataId
-          })
-        )
-        setDataId('')
+        apiContext.todo.getAll.refetch()
       },
     })
-  useEffect(() => {
-    setDataCheck(todos)
-  }, [todos])
   const handleUpdate = (id: number, statuss: string) => {
-    if (statuss === 'completed') {
-      setDataId(id)
-      updateTodo({ status: 'pending', todoId: id })
-    } else {
-      setDataId(id)
-      updateTodo({ status: 'completed', todoId: id })
-    }
+    const changeStatus = statuss === 'completed' ? 'pending' : 'completed'
+    updateTodo({ status: changeStatus, todoId: id })
   }
 
   return (
     <ul className="grid grid-cols-1 gap-y-3" ref={animationParent}>
-      {dataCheck.map((todo: any) => (
+      {todos.map((todo: any) => (
         <li key={todo.id}>
           <div
             className={`flex items-center justify-between rounded-12 border border-gray-200 px-4 py-3 shadow-sm ${
@@ -153,7 +124,6 @@ export const TodoList = () => {
               <XMarkIcon
                 className="h-6 w-6"
                 onClick={() => {
-                  setDataId(todo.id)
                   deleteTodo({ id: todo.id })
                 }}
               />
